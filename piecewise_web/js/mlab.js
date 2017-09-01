@@ -300,8 +300,9 @@ function setPolygonLayer(layer, year, month, metric, mode, resolution) {
 
 	month = month < 10 ? '0' + month : month;
 	if ( polygonType != 'hex' ) {
-		qBounds['start'] = Date.UTC(year, month - 1, 1) / 1000;
-		qBounds['end'] = Date.UTC(year, month, 1, 0, 0, -1) / 1000;
+		selectedQuarter = new getQuarter(month);
+		start = selectedQuarter['start'];
+		end = selectedQuarter['end'];
 		dataUrl = geoLayers[layer]['dataUrl'] + start + ',' + end;
 	} else {
 		dataUrl = 'json/' + year + '_' + month + '-' + resolution + '.' +
