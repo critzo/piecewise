@@ -194,18 +194,18 @@ mapscript_json_type: "topojson"
 # This dictionary of month names/abbreviations lets you configure how month names appear 
 # on the website map controls. 
 mapscript_month_names: 
-  1: Jan
-  2: Feb
-  3: Mar
-  4: Apr
-  5: May
-  6: Jun
-  7: Jul
-  8: Aug
-  9: Sep
-  10: Oct
-  11: Nov
-  12: Dec
+  1: Q1 #Jan
+  2: Q2 #Feb
+  3: Q3 #Mar
+  4: Q4 #Apr
+#  5: May
+#  6: Jun
+#  7: Jul
+#  8: Aug
+#  9: Sep
+#  10: Oct
+#  11: Nov
+#  12: Dec
 
 ###
 # WEBSITE FORM CUSTOMIZATIONS
