@@ -11,27 +11,26 @@ function getCurrentValues() {
 	$('.metricControls').before('<p id="mobile-only-text">Showing <span class="metric">' + currentMetricOption + '</span> from <span class="mobiledate">' + currentMonthOption + ". " + currentYearOption + '</span></p>');
 };
 
-// Gets the current quarter from a timestamp
+// Given a numeric month, returns current quarter start/end timestamps
 function getQuarter(m) {
-	var qBounds = new Array();
 	switch (m) {
 	    case (m < 4):
-	      qBounds['start'] = Date.UTC(currentYear, 0, 1) / 1000;
-	      qBounds['end'] = (Date.UTC(currentYear, 3, 1) / 1000) - 1;
+	      start = Date.UTC(currentYear, 0, 1) / 1000;
+	      end = (Date.UTC(currentYear, 3, 1) / 1000) - 1;
 	      break;
 	    case (m >= 4 && m < 7):
-	      qBounds['start'] = Date.UTC(currentYear, 3, 1) / 1000;
-	      qBounds['end'] = (Date.UTC(currentYear, 6, 1) / 1000) - 1;
+	      start = Date.UTC(currentYear, 3, 1) / 1000;
+	      end = (Date.UTC(currentYear, 6, 1) / 1000) - 1;
 	      break;
 	    case (m >= 7 && m < 10):
-	      qBounds['start'] = Date.UTC(currentYear, 6, 1) / 1000;
-	      qBounds['end'] = (Date.UTC(currentYear, 9, 1) / 1000) - 1;
+	      start = Date.UTC(currentYear, 6, 1) / 1000;
+	      end = (Date.UTC(currentYear, 9, 1) / 1000) - 1;
 	      break;
 	    case (m >= 10 && m <= 12):
-	      qBounds['start'] = Date.UTC(currentYear, 9, 1) / 1000;
-	      qBounds['end'] = (Date.UTC(currentYear + 1, 1, 1) / 1000) - 1;
-		}
-	return qBounds;
+	      start = Date.UTC(currentYear, 9, 1) / 1000;
+	      end = (Date.UTC(currentYear + 1, 1, 1) / 1000) - 1;
+		}	
+	return { 0:start, 1:end };
 }
 
 /**
@@ -301,8 +300,8 @@ function setPolygonLayer(layer, year, month, metric, mode, resolution) {
 	month = month < 10 ? '0' + month : month;
 	if ( polygonType != 'hex' ) {
 		selectedQuarter = new getQuarter(month);
-		start = selectedQuarter['start'];
-		end = selectedQuarter['end'];
+		start = selectedQuarter[0];
+		end = selectedQuarter[1];
 		dataUrl = geoLayers[layer]['dataUrl'] + start + ',' + end;
 	} else {
 		dataUrl = 'json/' + year + '_' + month + '-' + resolution + '.' +
