@@ -185,7 +185,7 @@ function addControls() {
  * displays something else.
  *
  * @param {object} e Event object
- * @param {string" mode What state are we in? New or update?
+ * @param {string} mode What state are we in? New or update?
  */
 function updateLayers(e, mode) {
 	var year = $('#selectYear').val(),
