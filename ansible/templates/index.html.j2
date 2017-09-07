@@ -338,10 +338,14 @@ function getNdtServer () {
   // Zero pad the front of the month
   currentMonth = currentMonth < 10 ? '0' + currentMonth : currentMonth;
 
+  var selectedQuarter = new getQuarter(currentMonth);
+  var start = selectedQuarter[0];
+  var end = selectedQuarter[1];
+
   // Be sure that we actually have data for the current month.  If not, then fall
   // back to the previous month.
-  var start = Date.UTC(currentYear, currentMonth - 1, 1) / 1000;
-  var end = Math.floor(Date.now() / 1000);
+  //var start = Date.UTC(currentYear, currentMonth - 1, 1) / 1000;
+  //var end = Math.floor(Date.now() / 1000);
   var dataUrl = geoLayers[defaultLayer]['dataUrl'] + start + ',' + end;
   $.ajax({
   	url: dataUrl,

@@ -12,7 +12,8 @@ function getCurrentValues() {
 };
 
 // Given a numeric month, returns current quarter start/end timestamps
-function getQuarter(m) {
+function getQuarter() {
+	var m;
 	switch (m) {
 	    case (m < 4):
 	      start = Date.UTC(currentYear, 0, 1) / 1000;
@@ -166,8 +167,8 @@ function addControls() {
 	// the map.
 	$('#sliderMonth')
 		.slider({
-			min: Number(dates[currentYear][0]),
-			max: Number(dates[currentYear][dates[currentYear].length - 1]),
+			min: 1 //Number(dates[currentYear][0]),
+			max: 4 //Number(dates[currentYear][dates[currentYear].length - 1]),
 			value: currentMonth,
 			change: function (e, ui) {
 				updateLayers(e, 'update');
@@ -175,7 +176,7 @@ function addControls() {
 		})
 		.slider('pips', {
 			rest: 'label',
-			labels: monthNames.slice(0, dates[currentYear].length)
+			labels: monthNames //.slice(0, dates[currentYear].length)
 		});;
 }
 
@@ -196,12 +197,12 @@ function updateLayers(e, mode) {
 	// value to the first configured month for that year.
 	if ( e.target.id == 'selectYear' ) {
 		$('#sliderMonth')
-			.slider('option', 'min', Number(dates[year][0]))
-			.slider('option', 'max', Number(
-				dates[year][dates[year].length - 1]))
+			.slider('option', 'min', 1) //Number(dates[year][0]))
+			.slider('option', 'max', 4) //Number(
+				//dates[year][dates[year].length - 1]))
 			.slider().slider('pips', {
 				rest: 'label',
-				labels: monthNames.slice(0, dates[year].length)
+				labels: monthNames //.slice(0, dates[year].length)
 			});
 
 		// This is a really ugly hack, but we don't want the onchange event to
